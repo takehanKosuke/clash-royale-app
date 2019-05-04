@@ -1,6 +1,5 @@
 .sidebar{
   background-color: #3568AF;
-  width: 300px;
   min-height: 100vh;
   height: 100%;
 }
@@ -19,5 +18,5 @@
 }
 
 .clash-banner {
-  width: 300px;
+  width: 100%;
 }

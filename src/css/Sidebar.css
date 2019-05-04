@@ -1,0 +1,23 @@
+.sidebar{
+  background-color: #3568AF;
+  width: 300px;
+  min-height: 100vh;
+  height: 100%;
+}
+
+.sidebar * {
+  color: #fff!important;
+}
+
+.sidebar h1 {
+  margin: 0;
+  padding:20px;
+}
+
+.list-items > span {
+  font-size: 23px;
+}
+
+.clash-banner {
+  width: 300px;
+}

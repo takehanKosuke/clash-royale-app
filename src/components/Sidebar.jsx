@@ -14,26 +14,24 @@ import '../css/Sidebar.css'
 class Sidebar extends Component {
   render() {
     return (
-      <Grid item xs={2}>
-        <div className="sidebar">
-        <a href='https://clashroyale.com/ja/'><img src='./images/クラロワ.jpg' className='clash-banner'/></a>
-          <h1>React ClashRoyale</h1>
-          <List>
-            <ListItem button key={'Home'}>
-              <ListItemIcon><Home /></ListItemIcon>
-              <ListItemText primary={'Home'} className="list-items"/>
-            </ListItem>
-            <ListItem button key={'HowToUse'}>
-              <ListItemIcon><ContactSupport /></ListItemIcon>
-              <ListItemText primary={'How To Use'} className="list-items"/>
-            </ListItem>
-            <ListItem button key={'Contact'}>
-              <ListItemIcon><PermPhoneMsg /></ListItemIcon>
-              <ListItemText primary={'Contact'} className="list-items"/>
-            </ListItem>
-          </List>
-        </div>
-      </Grid>
+      <div className="sidebar">
+      <a href='https://clashroyale.com/ja/'><img src='./images/クラロワ.jpg' className='clash-banner'/></a>
+        <h1>React ClashRoyale</h1>
+        <List>
+          <ListItem button key={'Home'}>
+            <ListItemIcon><Home /></ListItemIcon>
+            <ListItemText primary={'Home'} className="list-items"/>
+          </ListItem>
+          <ListItem button key={'HowToUse'}>
+            <ListItemIcon><ContactSupport /></ListItemIcon>
+            <ListItemText primary={'How To Use'} className="list-items"/>
+          </ListItem>
+          <ListItem button key={'Contact'}>
+            <ListItemIcon><PermPhoneMsg /></ListItemIcon>
+            <ListItemText primary={'Contact'} className="list-items"/>
+          </ListItem>
+        </List>
+      </div>
     )
   }
 }

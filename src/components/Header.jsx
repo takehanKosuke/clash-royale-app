@@ -8,20 +8,14 @@ import Grid from '@material-ui/core/Grid';
 import '../css/Header.css'
 
 class Header extends Component {
-  constructor(props) {
-    super(props);
-    const user = this.props
-    this.state = { user: "ayane" }
-  }
   render() {
     return (
       <Grid
-        item xs={10}
         container
         direction="row"
         justify="space-between"
       >
-        <h1>UserName:{ this.state.user }</h1>
+        <h1>UserName:{ this.props.userName }</h1>
         <h1>
           <FormControl>
             <InputLabel htmlFor="custom-css-standard-input">TagID</InputLabel>

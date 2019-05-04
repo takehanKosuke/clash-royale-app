@@ -1,0 +1,23 @@
+.card-0 > div {
+  background-color: #2E43B7;
+}
+
+.card-1 > div {
+  background-color: #4E4ED6;
+}
+
+.card-2 > div {
+  background-color: #8C32CE;
+}
+
+.card-3 > div {
+  background-color: #4E9D2A;
+}
+
+.card-content > h2 {
+  color: #fff;
+}
+
+.card-content > p {
+  color: #fff;
+}

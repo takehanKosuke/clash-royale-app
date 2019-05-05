@@ -3,7 +3,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import Grid from '@material-ui/core/Grid';
+// import { Link } from 'react-router-dom';
 // icon
 import ContactSupport from '@material-ui/icons/ContactSupport';
 import Home from '@material-ui/icons/Home';
@@ -15,7 +15,7 @@ class Sidebar extends Component {
   render() {
     return (
       <div className="sidebar">
-      <a href='https://clashroyale.com/ja/'><img src='./images/クラロワ.jpg' className='clash-banner'/></a>
+      <a href='https://clashroyale.com/ja/'><img src='./images/クラロワ.jpg' alt='クラロワ'className='clash-banner'/></a>
         <h1>React ClashRoyale</h1>
         <List>
           <ListItem button key={'Home'}>

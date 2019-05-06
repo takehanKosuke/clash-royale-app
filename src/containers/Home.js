@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import Sidebar from '../components/Sidebar'
 import Header from '../components/Header'
 import AchieveList from '../components/AchieveList'
+import UserTable from '../components/UserTable'
 import Grid from '@material-ui/core/Grid';
 
 
-class App extends Component {
+class Home extends Component {
   render () {
     return(
       <Grid container spacing={24}>
@@ -15,10 +16,11 @@ class App extends Component {
         <Grid item xs={10}>
           <Header userName={ "kosuke" }/>
           <AchieveList achieveList={ [[ '勝利数', '500' ], [ '勝率', '30%' ] , [ '最多トロフィー', '5400' ], [ '最大勝利数', '13' ]] } />
+          <UserTable />
         </Grid>
       </Grid>
     )
   }
 }
 
-export default App;
+export default Home;

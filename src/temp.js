@@ -115,3 +115,33 @@ PermanentDrawerLeft.propTypes = {
 };
 
 export default withStyles(styles)(PermanentDrawerLeft);
+
+
+
+
+import axios from 'axios'
+
+const pixivApi = axios.create({
+    baseURL: "https://pirozhki.kameike.net",
+    headers: {
+      "x-pirozhki-token": "xMLEXhkc67KSJykBSJN28eMTbMqF6R4v"
+    },
+    responseType: 'json'
+  });
+
+const searchTag = (tagname, callback, page = 1, perpage = 20) => {
+    return pixivApi
+      .get("api/v1/search/works", {
+        params: {
+          q: tagname,
+          page,
+          perpage,
+        sort: 'popular',
+          image_sizes: "small,medium,large",
+          profile_image_sizes: "px_170x170,px_50x50"
+        }
+      })
+      .then(res => callback(res.request.response.response));
+}
+
+export { searchTag }

@@ -15,7 +15,7 @@ class Sidebar extends Component {
   render() {
     return (
       <div className="sidebar">
-        <a href='https://clashroyale.com/ja/'><img src='./images/クラロワ.jpg' className='clash-banner'/></a>
+      <a href='https://clashroyale.com/ja/'><img src='./images/クラロワ.jpg' alt='クラロワ'className='clash-banner'/></a>
         <h1>React ClashRoyale</h1>
         <List>
           <Link to="/">

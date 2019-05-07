@@ -7,15 +7,20 @@ import Grid from '@material-ui/core/Grid';
 
 
 class Home extends Component {
+  constructor(props){
+    super(props);
+    this.state = { user: "" };
+  }
   render () {
+    const user = this.state.user
     return(
       <Grid container spacing={24}>
         <Grid item xs={2}>
           <Sidebar />
         </Grid>
         <Grid item xs={10}>
-          <Header userName={ "kosuke" }/>
-          <AchieveList achieveList={ [[ '勝利数', '500' ], [ '勝率', '30%' ] , [ '最多トロフィー', '5400' ], [ '最大勝利数', '13' ]] } />
+          <Header />
+          <AchieveList achieveList={ [[ '勝利数',  user.wins ], [ '勝率', user.winsRate ] , [ '最多トロフィー', user.bestTrophies ], [ '最大勝利数', user.maxWins ]] } />
           <UserTable />
         </Grid>
       </Grid>

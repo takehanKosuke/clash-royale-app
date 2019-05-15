@@ -1,4 +1,5 @@
 import { SEARCH_USER } from '../actions/user'
+import _ from 'lodash';
 
 // controller的なやつかな
 export default (state = {}, action ) => {

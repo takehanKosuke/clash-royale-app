@@ -10,40 +10,27 @@ import '../css/Header.css'
 import { searchUser } from '../actions/user'
 
 class Header extends Component {
-  // compornentがマウントされた時に実行される
-  // componentDidMount() {
-  //   this.props.searchUser()
-  // }
+  componentDidMount() {
+    this.props.searchUser()
+  }
 
-  // constructor(props) {
-  //   super(props);
-  //   this.state = { id: "" }
-  //   this.handleSubmit = this.handleSubmit.bind(this)
-  //   this.handleChange = this.handleChange.bind(this)
-  // }
-  // handleChange = (event) => {
-  //   this.setState({
-  //     id: event.target.value
-  //   })
-  // }
-  // handleSubmit(){
-  //   this.props.sarchUser(this.state.id)
-  // }
+  handleSearchUser = id => {
+    this.props.searchUser(id)
+  }
 
   render() {
-    const props = this.props
     return (
       <Grid
         container
         direction="row"
         justify="space-between"
       >
-        <h1>UserName:{ props.user.name }</h1>
+        <h1>UserName:{ this.props.user.name }</h1>
         <h1>
-          <form onSubmit={props.searchUser}>
+          <form onSubmit={this.props.searchUser}>
             <FormControl>
               <InputLabel htmlFor="custom-css-standard-input">TagID</InputLabel>
-              <Input id="custom-css-standard-input" onChange={ this.handleChange }/>
+              <Input id="custom-css-standard-input" onChange={ this.handleSearchUser }/>
             </FormControl>
             <Button type="submit" variant="contained" color="primary">Searh</Button>
           </form>

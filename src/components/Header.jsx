@@ -7,16 +7,17 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Grid from '@material-ui/core/Grid';
 import '../css/Header.css'
 
-import { searchUser } from '../actions/user'
+import { bindActionCreators } from 'redux';
+import { showUser } from '../actions/user'
 
 class Header extends Component {
-  componentDidMount() {
-    this.props.searchUser()
+  state = {
+    userId: ""
   }
 
-  handleSearchUser = id => {
-    this.props.searchUser(id)
-  }
+  handleChange = event => {
+    this.setState({ userId: event.target.value });
+  };
 
   render() {
     return (
@@ -27,12 +28,12 @@ class Header extends Component {
       >
         <h1>UserName:{ this.props.user.name }</h1>
         <h1>
-          <form onSubmit={this.props.searchUser}>
+          <form>
             <FormControl>
               <InputLabel htmlFor="custom-css-standard-input">TagID</InputLabel>
-              <Input id="custom-css-standard-input" onChange={ this.handleSearchUser }/>
+              <Input id="custom-css-standard-input" value={ this.state.userId } onChange={ this.props.handleChange } />
             </FormControl>
-            <Button type="submit" variant="contained" color="primary">Searh</Button>
+            <Button variant="contained" color="primary" onClick={() => showUser(this.state.userId)} >Searh</Button>
           </form>
         </h1>
       </Grid>
@@ -44,7 +45,12 @@ class Header extends Component {
 const mapStateToProps = state => ({ user: state.user })
 
 // mapDispatchToProps あるアクションが発生した時にreducerにタイプをなげてstateの変更をさせるためのやつ
-const mapDispatchToProps = ({ searchUser })
+const mapDispatchToProps = dispatch => {
+  console.log('test')
+  return {
+    showUser: bindActionCreators(showUser, dispatch)
+  }
+}
 
 // stateとactionをひもづける
 export default connect(mapStateToProps, mapDispatchToProps)(Header)

@@ -1,13 +1,11 @@
-import axios from 'axios'
 import { baseApi } from '../services/util'
-export const SEARCH_USER = 'SEARCH_USER';
+export const SHOW_USER = 'SHOW_USER';
 
-export const searchUser = value => async dispatch => {
-
-  const response = await baseApi.get(`/users`)
+export const showUser = id => async dispatch => {
+  const response = await baseApi.get(`/users/${id}`)
   // .then(res => callback(res))
   // .catch((error) => {
   //     console.log(error);
   // })
-  dispatch({ type: SEARCH_USER, response })
+  dispatch({ type: SHOW_USER, response })
 }

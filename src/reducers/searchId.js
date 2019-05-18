@@ -1,5 +1,3 @@
-import { CHANGE_SEARCH_ID } from '../actions/user'
-
 const initialState = {
   searchId: '#LLG8QJUR',
 }

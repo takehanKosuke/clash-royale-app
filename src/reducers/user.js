@@ -1,9 +1,3 @@
-import {
-  NOT_FOUND_USER,
-  SHOW_USER,
-  GET_USER
- } from '../actions/user'
-
 const initialState = {
   user: {},
   clan: {},

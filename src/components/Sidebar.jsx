@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 // icon
 import ContactSupport from '@material-ui/icons/ContactSupport';
 import Home from '@material-ui/icons/Home';
-import PermPhoneMsg from '@material-ui/icons/PermPhoneMsg';
+// import PermPhoneMsg from '@material-ui/icons/PermPhoneMsg';
 
 import '../css/Sidebar.css'
 

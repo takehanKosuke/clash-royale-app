@@ -8,15 +8,18 @@ import {Link} from 'react-router-dom';
 
 import '../css/UserTable.css'
 
+import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux';
 import {showUser} from '../actions/user'
+import { handleChange } from '../actions/searchId'
 
 class UserTable extends Component {
-  compornentDidMount(){
-    showUser(this.props.searchId)
+  componentDidMount() {
+    this.props.showUser()
   }
   render() {
-    if (this.user) {
+    const props = this.props.user
+    if (props.user) {
       return (<Table>
         <TableHead>
           <TableRow>
@@ -27,39 +30,39 @@ class UserTable extends Component {
         <TableBody>
           <TableRow>
             <TableCell component="th" scope="row">タワーレベル</TableCell>
-            <TableCell>{this.user.expLevel}</TableCell>
+            <TableCell>{props.user.expLevel}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell component="th" scope="row">トロフィー数</TableCell>
-            <TableCell>{this.user.trophies}</TableCell>
+            <TableCell>{props.user.trophies}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell component="th" scope="row">対戦数</TableCell>
-            <TableCell>{this.user.battleCount}</TableCell>
+            <TableCell>{props.user.battleCount}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell component="th" scope="row">勝利数</TableCell>
-            <TableCell>{this.user.wins}</TableCell>
+            <TableCell>{props.user.wins}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell component="th" scope="row">敗北数</TableCell>
-            <TableCell>{this.user.losses}</TableCell>
+            <TableCell>{props.user.losses}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell component="th" scope="row">引き分け数</TableCell>
-            <TableCell>{this.props.drow}</TableCell>
+            <TableCell>{props.drow}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell component="th" scope="row">勝率</TableCell>
-            <TableCell>{this.props.rate}</TableCell>
+            <TableCell>{props.rate}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell component="th" scope="row">３クラウン</TableCell>
-            <TableCell>{this.user.threeCrownWins}</TableCell>
+            <TableCell>{props.user.threeCrownWins}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell component="th" scope="row">クラン名</TableCell>
-            <TableCell>{this.state.clan.name}</TableCell>
+            <TableCell>{props.clan.name}</TableCell>
           </TableRow>
         </TableBody>
       </Table>);
@@ -68,6 +71,13 @@ class UserTable extends Component {
     }
   }
 }
-const mapStateToProps = state => ({user: state.user})
+// mapStateToProps stateの情報からcomponentの必要なものをpropsとしてレンダリングさせる
+const mapStateToProps = (state, ownProps) => ({ user: state.user, searchId: state.searchId.searchId })
 
-export default UserTable;
+// mapDispatchToProps あるアクションが発生した時にreducerにタイプをなげてstateの変更をさせるためのやつ
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ showUser, handleChange }, dispatch)
+}
+
+// stateとactionをひもづける
+export default connect(mapStateToProps, mapDispatchToProps)(UserTable)

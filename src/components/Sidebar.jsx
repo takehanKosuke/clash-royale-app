@@ -30,12 +30,14 @@ class Sidebar extends Component {
               <ListItemText primary={'How To Use'} className="list-items" />
             </ListItem>
           </Link>
-          <Link to="/contact">
+          {/*
+            <Link to="/contact">
             <ListItem button key={'Contact'}>
-              <ListItemIcon><PermPhoneMsg /></ListItemIcon>
-              <ListItemText primary={'Contact'} className="list-items" />
+            <ListItemIcon><PermPhoneMsg /></ListItemIcon>
+            <ListItemText primary={'Contact'} className="list-items" />
             </ListItem>
-          </Link>
+            </Link>
+          */}
         </List>
       </div>
     )

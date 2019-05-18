@@ -1,26 +1,29 @@
-import { SHOW_USER } from '../actions/user'
+import {
+  NOT_FOUND_USER,
+  SHOW_USER,
+  GET_USER
+ } from '../actions/user'
 
 const initialState = {
   user: {},
-  clan: {},
-  drow: 0,
-  rate: 0
+  // clan: {},
+  // drow: 0,
+  // rate: 0
 }
 
 // controller的なやつかな
 export default (state = initialState, action ) => {
-  console.log(state)
   switch (action.type) {
-    case 'SHOW_USER':
-      return { state }
-    case 'SUCESS_SEARCH_USER':
+    case 'GET_USER':
       return {
         ...state,
-        user: action.response.user,
-        clan: action.response.user.clan,
-        rate: Math.round(action.response.user.wins/action.response.user.battleCount*100),
-        drow: action.response.user.battleCount - action.response.user.wins - action.response.user.losses,
+        user: action.response,
+        // clan: action.response.clan,
+        // rate: Math.round(action.response.wins/action.response.battleCount*100),
+        // drow: action.response.battleCount - action.response.wins - action.response.losses,
       }
+    case 'NOT_FOUND_USER':
+      return { state }
     default:
       return state
   }

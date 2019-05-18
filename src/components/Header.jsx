@@ -44,12 +44,10 @@ class Header extends Component {
 
 // mapStateToProps stateの情報からcomponentの必要なものをpropsとしてレンダリングさせる
 const mapStateToProps = (state, ownProps) => ({ user: state.user, searchId: state.searchId.searchId })
-// const mapStateToProps = (state, ownProps) => ({ searchId: state.searchId.searchId })
 
 // mapDispatchToProps あるアクションが発生した時にreducerにタイプをなげてstateの変更をさせるためのやつ
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({ showUser, handleChange }, dispatch)
-  // return bindActionCreators({ handleChange }, dispatch)
 }
 
 // stateとactionをひもづける

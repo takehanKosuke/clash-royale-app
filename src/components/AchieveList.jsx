@@ -6,16 +6,21 @@ import Typography from '@material-ui/core/Typography';
 
 import '../css/AchieveList.css'
 
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
+import { showUser } from '../actions/user'
+import { handleChange } from '../actions/searchId'
+
 class AchieveList extends Component {
-  // ここでlist作らないといけない気がする
-  // achieveList={ [[ '勝利数',  this.state.user.wins ], [ '勝率', this.state.rate ] , [ '最多トロフィー', this.state.user.bestTrophies ], [ '最大勝利数', this.state.user.challengeMaxWins ]] }
-  state = {
-    achieveList: [[ '勝利数', 0 ], [ '勝率', 0 ] , [ '最多トロフィー', 0 ], [ '最大勝利数', 0 ]]
+  componentDidMount() {
+    this.props.showUser()
   }
   render() {
+    const props = this.props.user
+    let achieveList = props.user ? [[ '勝利数', props.user.wins], [ '勝率', `${props.rate}%` ] , [ '最多トロフィー', props.user.bestTrophies ], [ '最大勝利数', props.user.challengeMaxWins ]] : []
     return (
       <Grid container spacing={24}>
-        { this.state.achieveList.map((text, index) => (
+        { achieveList.map((text, index) => (
           <Grid item xs={3}>
             <Card className={`card-${ index }` }>
               <CardContent className="card-content">
@@ -29,4 +34,14 @@ class AchieveList extends Component {
     )
   }
 }
-export default AchieveList;
+
+// mapStateToProps stateの情報からcomponentの必要なものをpropsとしてレンダリングさせる
+const mapStateToProps = (state, ownProps) => ({ user: state.user, searchId: state.searchId.searchId })
+
+// mapDispatchToProps あるアクションが発生した時にreducerにタイプをなげてstateの変更をさせるためのやつ
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ showUser, handleChange }, dispatch)
+}
+
+// stateとactionをひもづける
+export default connect(mapStateToProps, mapDispatchToProps)(AchieveList)

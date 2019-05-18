@@ -12,6 +12,9 @@ import {bindActionCreators} from 'redux';
 import {showUser} from '../actions/user'
 
 class UserTable extends Component {
+  compornentDidMount(){
+    showUser(this.props.searchId)
+  }
   render() {
     if (this.user) {
       return (<Table>

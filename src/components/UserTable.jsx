@@ -1,48 +1,83 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-
+// import {Link} from 'react-router-dom';
 
 import '../css/UserTable.css'
 
-let id = 0;
-function createData(name, calories, fat, carbs, protein) {
-  id += 1;
-  return { id, name, calories, fat, carbs, protein };
-}
+import { connect } from 'react-redux'
+import {bindActionCreators} from 'redux';
+import {showUser} from '../actions/user'
+import { handleChange } from '../actions/searchId'
 
-const rows = [
-  createData('タワーレベル', 13),
-  createData('トロフィー数', 5000),
-  createData('勝利数', 3000),
-  createData('敗北数', 1500),
-  createData('勝率', '50%'),
-  createData('3クラウン', 500),
-  createData('クラン名', 'ピーマンず'),
-];
-
-function UserTable() {
-
-  return (
-    <Table>
-      <TableHead>
-        <TableRow>
-          <TableCell>内容</TableCell>
-          <TableCell>スコア</TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {rows.map(row => (
-          <TableRow key={row.id}>
-            <TableCell component="th" scope="row">{row.name}</TableCell>
-            <TableCell>{row.calories}</TableCell>
+class UserTable extends Component {
+  componentDidMount() {
+    this.props.showUser()
+  }
+  render() {
+    const props = this.props.user
+    if (props.user) {
+      return (<Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>内容</TableCell>
+            <TableCell>スコア</TableCell>
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
-  );
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell component="th" scope="row">タワーレベル</TableCell>
+            <TableCell>{props.user.expLevel}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell component="th" scope="row">トロフィー数</TableCell>
+            <TableCell>{props.user.trophies}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell component="th" scope="row">対戦数</TableCell>
+            <TableCell>{props.user.battleCount}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell component="th" scope="row">勝利数</TableCell>
+            <TableCell>{props.user.wins}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell component="th" scope="row">敗北数</TableCell>
+            <TableCell>{props.user.losses}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell component="th" scope="row">引き分け数</TableCell>
+            <TableCell>{props.drow}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell component="th" scope="row">勝率</TableCell>
+            <TableCell>{props.rate}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell component="th" scope="row">３クラウン</TableCell>
+            <TableCell>{props.user.threeCrownWins}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell component="th" scope="row">クラン名</TableCell>
+            <TableCell>{props.clan.name}</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>);
+    } else {
+      return (<div>User Not Found</div>)
+    }
+  }
 }
-export default UserTable;
+// mapStateToProps stateの情報からcomponentの必要なものをpropsとしてレンダリングさせる
+const mapStateToProps = (state, ownProps) => ({ user: state.user, searchId: state.searchId.searchId })
+
+// mapDispatchToProps あるアクションが発生した時にreducerにタイプをなげてstateの変更をさせるためのやつ
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ showUser, handleChange }, dispatch)
+}
+
+// stateとactionをひもづける
+export default connect(mapStateToProps, mapDispatchToProps)(UserTable)

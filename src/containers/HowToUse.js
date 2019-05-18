@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Sidebar from '../components/Sidebar'
-import ContactForm from '../components/ContactForm'
+// import ContactForm from '../components/ContactForm'
 import Grid from '@material-ui/core/Grid';
 
 

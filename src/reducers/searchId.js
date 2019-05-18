@@ -1,23 +1,18 @@
-import {
-  NOT_FOUND_USER,
-  SHOW_USER,
-  GET_USER
- } from '../actions/user'
+import { CHANGE_SEARCH_ID } from '../actions/user'
 
 const initialState = {
-  user: {},
+  searchId: '#LLG8QJUR',
 }
 
 // controller的なやつかな
 export default (state = initialState, action ) => {
   switch (action.type) {
-    case 'GET_USER':
+    case 'CHANGE_SEARCH_ID':
+      console.log(action.value)
       return {
         ...state,
-        user: action.response,
+        searchId: action.value,
       }
-    case 'NOT_FOUND_USER':
-      return { state }
     default:
       return state
   }

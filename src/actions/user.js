@@ -6,12 +6,12 @@ export const NOT_FOUND_USER = 'NOT_FOUND_USER';
 
 // 本当はsearchUserとかにしたいけど一旦はshowUserで
 export const showUser = id => {
+  if (id){
+    id = id.replace('#', '%23');
+  } else {
+    id = '%23LLG8QJUR';
+  }
   return dispatch => {
-    if (id){
-      id = id.replace('#', '%23');
-    } else {
-      id = '%23LLG8QJUR';
-    }
     baseApi.get(`/users`,{
       params: {
         ID: id
